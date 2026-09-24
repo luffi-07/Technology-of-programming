@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Вариант 17 — Регистрация с индикатором</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="card">
+  <h1>Создание аккаунта</h1>
+  <form id="regForm" novalidate>
+    <div class="field" data-field="username">
+      <label for="username">Логин</label>
+      <input id="username" type="text" autocomplete="off">
+      <span class="error"></span>
+    </div>
+    <div class="field" data-field="email">
+      <label for="email">E-mail</label>
+      <input id="email" type="email">
+      <span class="error"></span>
+    </div>
+    <div class="field" data-field="password">
+      <label for="password">Пароль</label>
+      <input id="password" type="password">
+      <div class="meter"><span id="meterBar"></span></div>
+      <span class="hint" id="meterText">Надёжность: —</span>
+      <span class="error"></span>
+    </div>
+    <div class="field" data-field="confirm">
+      <label for="confirm">Подтверждение пароля</label>
+      <input id="confirm" type="password">
+      <span class="error"></span>
+    </div>
+    <button type="submit">Создать аккаунт</button>
+  </form>
+  <div id="result" class="result"></div>
+</main>
+<script src="script.js"></script>
+</body>
+</html>

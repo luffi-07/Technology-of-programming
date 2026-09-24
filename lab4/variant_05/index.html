@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Вариант 5 — Опрос</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="card">
+  <h1>Оцените занятие</h1>
+  <form id="surveyForm" novalidate>
+    <div class="field" data-field="name">
+      <label for="name">Имя</label>
+      <input id="name" type="text">
+      <span class="error"></span>
+    </div>
+    <fieldset class="field" data-field="rating">
+      <legend>Оценка занятия (1 — плохо, 5 — отлично)</legend>
+      <div class="rating">
+        <label class="opt"><input type="radio" name="rating" value="1">1</label>
+        <label class="opt"><input type="radio" name="rating" value="2">2</label>
+        <label class="opt"><input type="radio" name="rating" value="3">3</label>
+        <label class="opt"><input type="radio" name="rating" value="4">4</label>
+        <label class="opt"><input type="radio" name="rating" value="5">5</label>
+      </div>
+      <span class="error"></span>
+    </fieldset>
+    <div class="field" data-field="comment">
+      <label for="comment">Комментарий</label>
+      <textarea id="comment" maxlength="200" placeholder="Что понравилось, что улучшить?"></textarea>
+      <span class="hint" id="commentCount">0 / 200</span>
+      <span class="error"></span>
+    </div>
+    <div class="field" data-field="agree">
+      <label class="opt"><input id="agree" type="checkbox"> Согласен на обработку ответа</label>
+      <span class="error"></span>
+    </div>
+    <button type="submit">Отправить ответ</button>
+  </form>
+  <div id="result" class="result"></div>
+</main>
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Вариант 4 — Запись на курс</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="card">
+  <h1>Запись на курс</h1>
+  <form id="courseForm" novalidate>
+    <div class="field" data-field="name">
+      <label for="name">Имя</label>
+      <input id="name" type="text">
+      <span class="error"></span>
+    </div>
+    <div class="field" data-field="phone">
+      <label for="phone">Телефон</label>
+      <input id="phone" type="tel" placeholder="+7 700 123 45 67">
+      <span class="hint" id="phoneHint">Цифр: 0 (нужно от 10 до 12)</span>
+      <span class="error"></span>
+    </div>
+    <div class="field" data-field="direction">
+      <label for="direction">Направление обучения</label>
+      <select id="direction">
+        <option value="">Выберите направление</option>
+        <option>Веб-разработка</option>
+        <option>Data Science</option>
+        <option>UX/UI-дизайн</option>
+        <option>Мобильная разработка</option>
+      </select>
+      <span class="error"></span>
+    </div>
+    <fieldset class="field" data-field="format">
+      <legend>Формат обучения</legend>
+      <label class="opt"><input type="radio" name="format" value="Очно"> Очно</label>
+      <label class="opt"><input type="radio" name="format" value="Онлайн"> Онлайн</label>
+      <label class="opt"><input type="radio" name="format" value="Смешанный"> Смешанный</label>
+      <span class="error"></span>
+    </fieldset>
+    <button type="submit">Записаться на курс</button>
+  </form>
+  <div id="result" class="result"></div>
+</main>
+<script src="script.js"></script>
+</body>
+</html>

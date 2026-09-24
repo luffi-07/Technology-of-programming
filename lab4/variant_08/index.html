@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Вариант 8 — Заказ товара</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="card">
+  <h1>Заказ товара</h1>
+  <form id="orderForm" novalidate>
+    <div class="field" data-field="product">
+      <label for="product">Товар</label>
+      <select id="product">
+        <option value="" data-price="0">Выберите товар</option>
+        <option data-price="12000">Наушники — 12 000 ₸</option>
+        <option data-price="25000">Умные часы — 25 000 ₸</option>
+        <option data-price="8000">Клавиатура — 8 000 ₸</option>
+        <option data-price="15000">Портативная колонка — 15 000 ₸</option>
+      </select>
+      <span class="error"></span>
+    </div>
+    <div class="field" data-field="quantity">
+      <label for="quantity">Количество</label>
+      <input id="quantity" type="number" value="1">
+      <span class="error"></span>
+    </div>
+    <fieldset class="field" data-field="delivery">
+      <legend>Способ доставки</legend>
+      <label class="opt"><input type="radio" name="delivery" value="Самовывоз" data-price="0"> Самовывоз — бесплатно</label>
+      <label class="opt"><input type="radio" name="delivery" value="Почта" data-price="250"> Почта — 250 ₸</label>
+      <label class="opt"><input type="radio" name="delivery" value="Курьер" data-price="500"> Курьер — 500 ₸</label>
+      <span class="error"></span>
+    </fieldset>
+    <fieldset class="field" data-field="extras">
+      <legend>Дополнительные услуги (по желанию)</legend>
+      <label class="opt"><input type="checkbox" name="extra" value="Подарочная упаковка" data-price="300"> Подарочная упаковка — 300 ₸</label>
+      <label class="opt"><input type="checkbox" name="extra" value="Расширенная гарантия" data-price="1500"> Расширенная гарантия — 1 500 ₸</label>
+      <span class="error"></span>
+    </fieldset>
+    <div class="total" id="total">Итого: 0 ₸</div>
+    <button type="submit">Оформить заказ</button>
+  </form>
+  <div id="result" class="result"></div>
+</main>
+<script src="script.js"></script>
+</body>
+</html>
