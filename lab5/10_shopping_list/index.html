@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Задание 10 — Список покупок</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 600px; margin: 60px auto; padding: 20px; }
+    input, button { padding: 10px; margin: 4px; }
+    li { margin: 8px 0; }
+    .delete { margin-left: 10px; }
+  </style>
+</head>
+<body>
+  <h1>Список покупок</h1>
+  <input id="itemInput" type="text" placeholder="Введите товар">
+  <button id="addButton">Добавить</button>
+  <button id="clearButton">Очистить список</button>
+
+  <ol id="shoppingList"></ol>
+  <p id="counter">Товаров: 0</p>
+
+  <script src="script.js"></script>
+</body>
+</html>

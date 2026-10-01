@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Задание 9 — Проверка пароля</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 600px; margin: 60px auto; padding: 20px; }
+    input { padding: 10px; width: 90%; }
+    li { margin: 8px 0; }
+    .ok { color: green; }
+    .bad { color: red; }
+    #result { font-weight: bold; margin-top: 15px; }
+  </style>
+</head>
+<body>
+  <h1>Проверка пароля</h1>
+  <p>Требования:</p>
+  <ul>
+    <li id="lengthRule">Минимум 8 символов</li>
+    <li id="digitRule">Наличие хотя бы одной цифры</li>
+  </ul>
+
+  <input id="password" type="password" placeholder="Введите пароль">
+  <p id="result">Введите пароль для проверки.</p>
+
+  <script src="script.js"></script>
+</body>
+</html>
