@@ -1,0 +1,41 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f2f4f6;
+    padding: 25px;
+}
+.card {
+    max-width: 800px;
+    margin: auto;
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px #bbb;
+}
+.cart-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    margin: 8px 0;
+    background: #f1f1f1;
+    border-radius: 8px;
+}
+.name {
+    flex: 1;
+}
+.qty {
+    min-width: 25px;
+    text-align: center;
+}
+button {
+    padding: 8px 12px;
+    border: 0;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.summary {
+    margin-top: 20px;
+    padding: 15px;
+    background: #eee;
+    border-radius: 8px;
+}

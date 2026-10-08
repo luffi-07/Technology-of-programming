@@ -1,0 +1,42 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f2f5f7;
+    padding: 25px;
+}
+.card {
+    max-width: 750px;
+    margin: auto;
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px #bbb;
+}
+.add {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+input, button {
+    padding: 10px;
+}
+.product {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px;
+    margin-top: 10px;
+    background: #f0f0f0;
+    border-radius: 8px;
+}
+.product .name {
+    flex: 1;
+}
+.product button {
+    border: 0;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.qty {
+    min-width: 30px;
+    text-align: center;
+}
