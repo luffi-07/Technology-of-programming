@@ -1,0 +1,33 @@
+/* Общие стили лабораторной работы №8 */
+:root{--bg:#eef1f6;--fg:#1d2433;--card:#ffffff;--accent:#2f5bd8;--muted:#667089;--border:#d8deea;--danger:#c93b3b}
+[data-theme="dark"]{--bg:#12151c;--fg:#e8ebf3;--card:#1b2030;--accent:#7a9bff;--muted:#9aa3ba;--border:#2c3346;--danger:#ef6b6b}
+*{box-sizing:border-box}
+body{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);color:var(--fg);margin:0;padding:24px;line-height:1.5}
+main{max-width:760px;margin:0 auto;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:24px}
+h1{font-size:1.4rem;margin:0 0 16px}
+h2{font-size:1.05rem;margin:0 0 8px}
+form,.row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;align-items:center}
+input,select,textarea,button{font:inherit;padding:8px 10px;border-radius:6px;border:1px solid var(--border);background:var(--card);color:var(--fg)}
+input:focus,select:focus,textarea:focus,button:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+textarea{width:100%;min-height:140px;resize:vertical}
+button{background:var(--accent);color:#fff;border-color:var(--accent);cursor:pointer}
+button.danger{background:var(--danger);border-color:var(--danger)}
+button.ghost{background:transparent;color:var(--fg);border-color:var(--border)}
+ul{list-style:none;padding:0;margin:0}
+li{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px 0;border-bottom:1px solid var(--border)}
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse}
+th,td{text-align:left;padding:8px;border-bottom:1px solid var(--border)}
+.muted,.empty{color:var(--muted)}
+.error{color:var(--danger);min-height:1.4em;margin:0 0 8px}
+.big{font-size:2.4rem;font-weight:700;margin:8px 0}
+
+/* Канбан */
+main{max-width:1000px}
+.board{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.column{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px;min-height:160px}
+.column h2{display:flex;justify-content:space-between}
+.kcard{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:8px;margin-bottom:8px;overflow-wrap:anywhere}
+.kcard .actions{display:flex;gap:4px;margin-top:6px}
+.kcard button{padding:2px 8px}
+@media (max-width:700px){.board{grid-template-columns:1fr}}

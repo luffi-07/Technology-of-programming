@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Таблица студентов</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+<h1 id="title">Таблица студентов</h1>
+<form id="form">
+  <input id="fio" placeholder="ФИО" autocomplete="off">
+  <input id="group" placeholder="Группа" autocomplete="off">
+  <input id="score" type="number" min="0" max="100" placeholder="Балл (0–100)">
+  <button type="submit">Добавить</button>
+</form>
+<p class="error" id="error" role="alert"></p>
+<div class="table-wrap">
+  <table>
+    <thead><tr><th>ФИО</th><th>Группа</th><th>Балл</th><th></th></tr></thead>
+    <tbody id="rows"></tbody>
+  </table>
+</div>
+<p id="avg" class="muted"></p>
+</main>
+<script src="app.js" defer></script>
+</body>
+</html>
