@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Вариант 9: фильтр задач</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <h1>Задачи с фильтром</h1>
+  <div class="toolbar">
+    <button id="load">Загрузить задачи</button>
+    <button id="retry" class="secondary hidden">Повторить</button>
+  </div>
+  <div class="toolbar" id="filters">
+    <button type="button" class="secondary" data-filter="all" disabled>Все</button>
+    <button type="button" class="secondary" data-filter="done" disabled>Выполненные</button>
+    <button type="button" class="secondary" data-filter="undone" disabled>Невыполненные</button>
+  </div>
+  <p id="status" role="status"></p>
+  <p id="stats" class="stats"></p>
+  <ul id="results"></ul>
+</body>
+</html>

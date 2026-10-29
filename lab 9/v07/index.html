@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Вариант 7: пользователь по ID</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <h1>Пользователь по ID (/users/{id})</h1>
+  <form id="form" class="toolbar">
+    <label for="user-id">ID пользователя:</label>
+    <input id="user-id" type="number" min="1" step="1" value="1" required>
+    <button id="load" type="submit">Найти</button>
+    <button id="retry" type="button" class="secondary hidden">Повторить</button>
+  </form>
+  <p id="status" role="status"></p>
+  <p id="stats" class="stats"></p>
+  <div id="results"></div>
+</body>
+</html>
