@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Калькулятор бюджета</title>
+  <link rel="stylesheet" href="./styles/style.css">
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand__logo">💸</span>
+        <div>
+          <h1>Мой бюджет</h1>
+          <p id="month-title" class="brand__sub"></p>
+        </div>
+      </div>
+      <div class="topbar__actions">
+        <label class="month-picker">
+          <span>Месяц</span>
+          <input id="month" type="month">
+        </label>
+        <button id="theme-toggle" class="icon-btn" type="button" title="Сменить тему">🌙</button>
+      </div>
+    </header>
+
+    <section class="cards">
+      <article id="balance-card" class="card card--balance">
+        <span class="card__label">Баланс</span>
+        <strong id="balance" class="card__value">0,00 ₸</strong>
+        <span class="card__hint">доходы − расходы за месяц</span>
+      </article>
+      <article class="card">
+        <span class="card__label">⬆ Доходы</span>
+        <strong id="income" class="card__value card__value--in">0,00 ₸</strong>
+      </article>
+      <article class="card">
+        <span class="card__label">⬇ Расходы</span>
+        <strong id="expense" class="card__value card__value--out">0,00 ₸</strong>
+      </article>
+      <article class="card">
+        <span class="card__label">🎯 Месячный лимит</span>
+        <div id="limit-box" class="limit">
+          <div class="limit__track"><div id="limit-bar" class="limit__bar"></div></div>
+          <p id="limit-text" class="limit__text"></p>
+        </div>
+        <form id="limit-form" class="limit__form">
+          <input id="limit-input" type="text" inputmode="decimal" placeholder="Лимит, ₸" aria-label="Месячный лимит">
+          <button type="submit" class="btn btn--small">Задать</button>
+        </form>
+      </article>
+    </section>
+
+    <main class="grid">
+      <section class="panel">
+        <h2>Новая операция</h2>
+        <form id="tx-form" novalidate>
+          <div class="segmented" role="radiogroup" aria-label="Тип операции">
+            <label><input type="radio" name="type" value="expense" checked><span>Расход</span></label>
+            <label><input type="radio" name="type" value="income"><span>Доход</span></label>
+          </div>
+
+          <label class="field">
+            <span>Категория</span>
+            <select id="category"></select>
+            <small id="error-category" class="error"></small>
+          </label>
+
+          <label class="field">
+            <span>Сумма, ₸</span>
+            <input id="amount" type="text" inputmode="decimal" placeholder="Например, 2500" autocomplete="off">
+            <small id="error-amount" class="error"></small>
+          </label>
+
+          <label class="field">
+            <span>Дата</span>
+            <input id="date" type="date">
+            <small id="error-date" class="error"></small>
+          </label>
+
+          <label class="field">
+            <span>Заметка (необязательно)</span>
+            <input id="note" type="text" placeholder="На что потратили?" autocomplete="off">
+            <small id="error-note" class="error"></small>
+          </label>
+
+          <button type="submit" class="btn">Добавить операцию</button>
+        </form>
+      </section>
+
+      <section class="panel">
+        <h2>Расходы по категориям</h2>
+        <div class="donut-wrap">
+          <div id="donut" class="donut">
+            <div class="donut__hole">
+              <small>Всего</small>
+              <strong id="donut-total">0,00 ₸</strong>
+            </div>
+          </div>
+        </div>
+        <ul id="legend" class="legend"></ul>
+      </section>
+
+      <section class="panel panel--history">
+        <div class="panel__head">
+          <h2>История</h2>
+          <div class="chips">
+            <button class="chip active" data-filter="all" type="button">Все</button>
+            <button class="chip" data-filter="income" type="button">Доходы</button>
+            <button class="chip" data-filter="expense" type="button">Расходы</button>
+          </div>
+        </div>
+        <ul id="history" class="history"></ul>
+        <p id="empty" class="empty">Операций за этот месяц пока нет.<br>Добавьте первую или загрузите демо-данные.</p>
+        <div class="panel__foot">
+          <button id="demo" class="btn btn--ghost btn--small" type="button">Демо-данные</button>
+          <button id="clear-all" class="btn btn--danger btn--small" type="button">Очистить всё</button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>

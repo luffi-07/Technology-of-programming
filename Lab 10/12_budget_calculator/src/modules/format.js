@@ -1,1 +1,0 @@
-export function money(value) { return new Intl.NumberFormat("ru-RU",{maximumFractionDigits:2}).format(value)+" ₸"; }
