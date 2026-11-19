@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LibAccess Portal — Электронная библиотека</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <!-- Всплывающие уведомления -->
+    <div id="toast" class="toast hidden"></div>
+
+    <!-- Модальное окно предпросмотра учебника -->
+    <div id="bookModal" class="modal-backdrop hidden">
+        <div class="modal-card">
+            <div class="modal-cover" id="modalCover">
+                <span class="book-category" id="modalCategory">Категория</span>
+                <button type="button" id="closeModalBtn" class="modal-close" title="Закрыть">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-meta-row">
+                    <span id="modalSubject" class="subject-tag">Предмет</span>
+                    <span id="modalRating" class="rating-tag">★ 4.9</span>
+                </div>
+                <h3 id="modalTitle">Название книги</h3>
+                <p id="modalAuthor" class="modal-author">Автор</p>
+                <p id="modalSummary" class="modal-summary">Описание учебника...</p>
+                <div class="modal-specs">
+                    <div><span>Год издания</span><strong id="modalYear">2024</strong></div>
+                    <div><span>Объём</span><strong id="modalPages">320 стр.</strong></div>
+                    <div><span>Возраст</span><strong id="modalAgeRange">18+ лет</strong></div>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" id="modalReadAction" class="btn-primary">Начать чтение в браузере</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ЭКРАН 1: ВХОД И РЕГИСТРАЦИЯ -->
+    <main id="loginSection" class="auth-wrapper">
+        <div class="auth-card">
+            <div class="brand-header">
+                <div class="logo-icon">📚</div>
+                <h1>LibAccess Portal</h1>
+                <p>Цифровая библиотека с подбором книг по роли и возрасту</p>
+            </div>
+
+            <div class="auth-tabs">
+                <button type="button" id="tabLogin" class="auth-tab active">Вход</button>
+                <button type="button" id="tabRegister" class="auth-tab">Регистрация</button>
+            </div>
+
+            <!-- ФОРМА ВХОДА -->
+            <form id="loginForm" novalidate>
+                <div class="input-group">
+                    <label>Роль читателя</label>
+                    <div class="role-selector" id="loginRoleSelector">
+                        <button type="button" class="role-chip" data-role="school">🎒 Школьник</button>
+                        <button type="button" class="role-chip active" data-role="student">🎓 Студент</button>
+                        <button type="button" class="role-chip" data-role="teacher">👨‍🏫 Учитель</button>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="loginInput">Логин</label>
+                    <input type="text" id="loginInput" placeholder="Введите ваш логин" autocomplete="username" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="passwordInput">Пароль</label>
+                    <input type="password" id="passwordInput" placeholder="Введите пароль" autocomplete="current-password" required>
+                </div>
+
+                <div id="errorBox" class="error-box hidden"></div>
+
+                <button type="submit" class="btn-primary">Войти в библиотеку</button>
+            </form>
+
+            <!-- ФОРМА РЕГИСТРАЦИИ -->
+            <form id="registerForm" class="hidden" novalidate>
+                <div class="input-group">
+                    <label>Выберите вашу роль</label>
+                    <div class="role-selector" id="regRoleSelector">
+                        <button type="button" class="role-chip" data-role="school">🎒 Школьник</button>
+                        <button type="button" class="role-chip active" data-role="student">🎓 Студент</button>
+                        <button type="button" class="role-chip" data-role="teacher">👨‍🏫 Учитель</button>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="regNameInput">Имя и фамилия</label>
+                    <input type="text" id="regNameInput" placeholder="Например, Алан Тулегенов" required>
+                </div>
+
+                <div class="input-row">
+                    <div class="input-group">
+                        <label for="regAgeInput">Возраст</label>
+                        <input type="number" id="regAgeInput" min="7" max="80" value="19" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="regLoginInput">Логин для входа</label>
+                        <input type="text" id="regLoginInput" placeholder="alan_2026" autocomplete="username" required>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="regDeptInput">Школа / ВУЗ / Кафедра</label>
+                    <input type="text" id="regDeptInput" placeholder="Например, ИС 25-21, АТУ">
+                </div>
+
+                <div class="input-group">
+                    <label for="regPasswordInput">Пароль (от 4 символов)</label>
+                    <input type="password" id="regPasswordInput" placeholder="Придумайте пароль" autocomplete="new-password" required>
+                </div>
+
+                <div id="regErrorBox" class="error-box hidden"></div>
+
+                <button type="submit" class="btn-primary">Создать аккаунт и войти</button>
+            </form>
+
+            <div class="security-test-bar">
+                <button type="button" id="testUnauthorizedBtn" class="btn-ghost">
+                    🔒 Проверить доступ к каталогу без входа (API 401)
+                </button>
+            </div>
+
+            <div class="demo-credentials">
+                <span>Готовые тестовые аккаунты (пароль <b>12345</b>) — кликните для подстановки:</span>
+                <div class="quick-fill-row">
+                    <button type="button" class="quick-fill-btn" data-role="school" data-login="school">🎒 school</button>
+                    <button type="button" class="quick-fill-btn" data-role="student" data-login="student">🎓 student</button>
+                    <button type="button" class="quick-fill-btn" data-role="teacher" data-login="teacher">👨‍🏫 teacher</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ЭКРАН 2: ЛИЧНЫЙ КАБИНЕТ И КАТАЛОГ -->
+    <div id="librarySection" class="dashboard hidden">
+        <header class="topbar">
+            <div class="topbar-brand">
+                <span class="logo-small">📚</span>
+                <div>
+                    <strong>LibAccess</strong>
+                    <span class="badge-secure">HttpOnly Session</span>
+                </div>
+            </div>
+
+            <div class="topbar-controls">
+                <div class="session-timer" title="Оставшееся время жизни серверной сессии">
+                    ⏳ Сессия: <span id="timerDisplay">05:00</span>
+                </div>
+                <button id="logoutBtn" class="btn-danger">Выйти</button>
+            </div>
+        </header>
+
+        <div class="container">
+            <!-- Hero-профиль читателя -->
+            <section class="profile-banner">
+                <div class="avatar" id="userAvatar">АТ</div>
+                <div class="profile-details">
+                    <div class="profile-top">
+                        <h2 id="profileName">Загрузка...</h2>
+                        <span class="role-pill" id="profileRole">Студент</span>
+                        <span class="age-pill" id="profileAge">19 лет</span>
+                    </div>
+                    <p class="profile-meta">
+                        <span>🎫 Билет: <strong id="profileCard">—</strong></span>
+                        <span>🏛️ Учреждение: <strong id="profileDept">—</strong></span>
+                        <span>👤 Логин: <strong id="profileLogin">—</strong></span>
+                    </p>
+                </div>
+                <div class="profile-stats">
+                    <div class="stat-box">
+                        <span class="stat-num" id="statAvailableCount">0</span>
+                        <span class="stat-label">Доступно книг</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-num" id="statInStockCount">0</span>
+                        <span class="stat-label">В наличии</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Фильтры по предметам и поиск -->
+            <section class="catalog-toolbar">
+                <div class="catalog-heading">
+                    <h3 id="catalogTitle">Подборка учебников</h3>
+                    <p class="subtitle" id="catalogSubtitle">Фильтрация по роли и возрасту выполнена на сервере</p>
+                </div>
+
+                <div class="search-controls">
+                    <label class="checkbox-pill">
+                        <input type="checkbox" id="onlyAvailableCheck">
+                        <span>Только в наличии</span>
+                    </label>
+                    <input type="text" id="searchInput" class="search-input" placeholder="🔍 Поиск по названию, автору или предмету...">
+                </div>
+            </section>
+
+            <!-- Чипы предметов -->
+            <div id="subjectChips" class="subject-chips"></div>
+
+            <!-- Сетка книг -->
+            <section id="booksGrid" class="books-grid"></section>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
